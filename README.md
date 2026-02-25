@@ -202,6 +202,74 @@ python3 main.py
 
 ---
 
+## Visual Studio Code
+
+The repo includes `.vscode/` configuration for one-click running and testing.
+
+### Prerequisites
+
+1. Install the **Python** extension (`ms-python.python`) — VS Code will prompt you when you open the folder, or install from the Extensions sidebar
+2. Open the project folder in VS Code:
+   ```bash
+   code /path/to/StockLTSMTransformerQuantum
+   ```
+3. Select your Python interpreter: press **Cmd+Shift+P** (macOS) or **Ctrl+Shift+P** (Windows/Linux), type **"Python: Select Interpreter"**, and choose the `.venv` virtualenv
+
+### Running the Application
+
+1. Open the **Run and Debug** sidebar (**Cmd+Shift+D** / **Ctrl+Shift+D**)
+2. Select a launch configuration from the dropdown at the top:
+
+| Configuration | What It Does |
+|--------------|--------------|
+| **Run GUI (main.py)** | Launches the PyQt5 stock trading GUI with `.env` loaded |
+| **Validate Config** | Runs `config.py` to verify YAML and env vars are correct |
+| **Version Check** | Runs `versions.py` to print all package versions |
+
+3. Click the green **Play** button (or press **F5**) to run
+
+> **Tip:** Set breakpoints by clicking in the gutter (left of line numbers). The debugger will pause there so you can inspect variables.
+
+### Running Tests
+
+#### Option A: Test Explorer (Sidebar)
+
+1. Open the **Testing** sidebar (flask icon, or **Cmd+Shift+P** → **"Testing: Focus on Test Explorer View"**)
+2. VS Code auto-discovers all 46 tests from `tests/`
+3. Click the **Play** button next to any test, test class, or test file to run it
+4. Click the **Debug** button (bug icon) next to a test to run it with the debugger attached
+
+#### Option B: Launch Configurations
+
+From the **Run and Debug** sidebar:
+
+| Configuration | What It Does |
+|--------------|--------------|
+| **Run All Tests** | Runs all 46 tests with verbose output |
+| **Run Tests with Coverage** | Runs all tests and generates HTML coverage report in `htmlcov/` |
+| **Debug Current Test File** | Runs only the test file currently open in the editor (with debugger) |
+
+#### Option C: Terminal
+
+Open the VS Code integrated terminal (**Ctrl+`**) and use Make:
+
+```bash
+make test            # Run all 46 tests
+make test-cov        # Run with coverage report
+make test-quick      # Stop on first failure
+```
+
+### Debugging a Failing Test
+
+1. Open the failing test file (e.g., `tests/test_models.py`)
+2. Set a breakpoint on the line you want to inspect
+3. In **Run and Debug**, select **"Debug Current Test File"**
+4. Press **F5** — the debugger stops at your breakpoint
+5. Use the Debug toolbar: **Step Over** (F10), **Step Into** (F11), **Continue** (F5)
+6. Inspect variables in the **Variables** panel and **Debug Console**
+
+---
+
 ## Testing
 
 The test suite runs entirely offline with **no GPU, no API tokens, and no network access**. All heavy dependencies (PennyLane, TensorFlow/Keras, PyQt5, matplotlib, ta, sklearn) are stubbed via `sys.modules` mocks in `conftest.py`.
