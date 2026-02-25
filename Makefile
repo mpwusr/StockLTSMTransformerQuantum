@@ -18,8 +18,10 @@ run:
 	python3 main.py
 
 # Create virtual environment and install all dependencies
+# Uses python3.13 if available (TensorFlow/PennyLane need ≤3.13), falls back to python3
+PYTHON := $(shell command -v python3.13 2>/dev/null || echo python3)
 setup:
-	python3 -m venv .venv
+	$(PYTHON) -m venv .venv
 	.venv/bin/pip install --upgrade pip
 	.venv/bin/pip install -r requirements.txt
 	.venv/bin/pip install -r requirements-test.txt
