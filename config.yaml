@@ -1,0 +1,63 @@
+model:
+  look_back: 60
+  lstm:
+    units: [50, 50]
+    dropout: 0.2
+  transformer:
+    num_heads: 4
+    key_dim: 64
+    dense_units: [128, 100, 50]
+    dropout: 0.1
+  gru_cnn:
+    conv_filters: 32
+    kernel_size: 3
+    gru_units: [64, 32]
+    dropout: 0.2
+  quantum:
+    n_qubits: 4
+    layers: 4
+    iterations: 300
+    step_size: 0.1
+
+trading:
+  initial_cash: 10000
+  stop_loss: 0.05
+  take_profit: 0.1
+  moving_average_window: 3
+  rsi_threshold: [30, 70]
+
+horizons:
+  short: 30
+  medium: 90
+  long: 365
+
+training:
+  epochs: 10
+  batch_size: 32
+  validation_split: 0.2
+  patience: 3
+
+data:
+  default_start: "2020-01-01"
+  providers: [polygon, yahoo, alphavantage]
+  cache_dir: "data_cache"
+  log_dir: "training_logs"
+
+api:
+  alpha_base_url: "https://www.alphavantage.co/query"
+  polygon_base_url: "https://api.polygon.io/v2/aggs/ticker"
+  polygon_limit: 50000
+
+gui:
+  window_title: "Stock Trading GUI"
+  window_geometry: [100, 100, 1200, 1000]
+  model_colors:
+    LSTM: "blue"
+    Transformer: "orange"
+    GRUCNN: "purple"
+    QML: "green"
+  model_labels:
+    LSTM: "LSTM"
+    Transformer: "Transformer"
+    GRUCNN: "GRUCNN"
+    QML: "Quantum Machine Learning"

@@ -14,5 +14,6 @@ python-dotenv==1.1.0
 requests==2.32.3
 alpha-vantage==3.0.0
 
-
-
+# New dependencies for improvements
+tenacity>=8.2.0
+PyYAML>=6.0
