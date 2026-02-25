@@ -6,16 +6,30 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
+            "python": "${command:python.interpreterPath}",
             "console": "integratedTerminal",
             "envFile": "${workspaceFolder}/.env",
             "justMyCode": true,
             "cwd": "${workspaceFolder}"
         },
         {
+            "name": "Run GUI (no debug)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "python": "${command:python.interpreterPath}",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}",
+            "noDebug": true
+        },
+        {
             "name": "Run All Tests",
             "type": "debugpy",
             "request": "launch",
             "module": "pytest",
+            "python": "${command:python.interpreterPath}",
             "args": ["tests/", "-v", "--tb=short"],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
@@ -26,6 +40,7 @@
             "type": "debugpy",
             "request": "launch",
             "module": "pytest",
+            "python": "${command:python.interpreterPath}",
             "args": [
                 "tests/", "-v", "--tb=short",
                 "--cov=.", "--cov-report=term-missing", "--cov-report=html"
@@ -39,6 +54,7 @@
             "type": "debugpy",
             "request": "launch",
             "module": "pytest",
+            "python": "${command:python.interpreterPath}",
             "args": ["${file}", "-v", "--tb=long", "-s"],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
@@ -49,6 +65,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/config.py",
+            "python": "${command:python.interpreterPath}",
             "console": "integratedTerminal",
             "envFile": "${workspaceFolder}/.env",
             "cwd": "${workspaceFolder}"
@@ -58,6 +75,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/versions.py",
+            "python": "${command:python.interpreterPath}",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}"
         }

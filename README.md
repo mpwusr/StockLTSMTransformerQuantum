@@ -159,6 +159,17 @@ TICKERS=AAPL,TSLA,GOOGL                 # Comma-separated ticker list
 
 **Requires Python 3.10+**
 
+### Quick Setup (Recommended)
+
+```bash
+git clone https://github.com/mpwusr/StockLTSMTransformerQuantum.git
+cd StockLTSMTransformerQuantum
+make setup             # Creates .venv, installs all dependencies
+source .venv/bin/activate
+```
+
+### Manual Setup
+
 ```bash
 git clone https://github.com/mpwusr/StockLTSMTransformerQuantum.git
 cd StockLTSMTransformerQuantum
@@ -168,6 +179,7 @@ source .venv/bin/activate     # macOS/Linux
 # .venv\Scripts\activate      # Windows
 
 pip install -r requirements.txt
+pip install -r requirements-test.txt
 ```
 
 > **Note:** If the `ta` package fails to build on macOS, install TA-Lib via Homebrew first:
@@ -183,7 +195,7 @@ pip install -r requirements.txt
 2. Launch the GUI:
 
 ```bash
-python3 main.py
+make run               # or: python3 main.py
 ```
 
 3. In the GUI:
@@ -277,6 +289,8 @@ The test suite runs entirely offline with **no GPU, no API tokens, and no networ
 ### Run with Make
 
 ```bash
+make run             # Launch the application (main.py)
+make setup           # Create .venv and install all dependencies
 make test            # Run all 46 tests with verbose output
 make test-cov        # Run with coverage report (terminal + HTML)
 make test-quick      # Stop on first failure

@@ -1,8 +1,10 @@
-.PHONY: test test-verbose test-cov test-quick lint clean install-test help
+.PHONY: run setup test test-verbose test-cov test-quick lint clean install-test help
 
 # Default target
 help:
 	@echo "Available targets:"
+	@echo "  make run           - Run the application (main.py)"
+	@echo "  make setup         - Create .venv and install all dependencies"
 	@echo "  make test          - Run all tests"
 	@echo "  make test-verbose  - Run all tests with verbose output"
 	@echo "  make test-cov      - Run tests with coverage report"
@@ -11,7 +13,20 @@ help:
 	@echo "  make clean         - Remove cache and build artifacts"
 	@echo "  make install-test  - Install test dependencies"
 
-# Install test dependencies
+# Run the application
+run:
+	python3 main.py
+
+# Create virtual environment and install all dependencies
+setup:
+	python3 -m venv .venv
+	.venv/bin/pip install --upgrade pip
+	.venv/bin/pip install -r requirements.txt
+	.venv/bin/pip install -r requirements-test.txt
+	@echo ""
+	@echo "Setup complete. Activate with: source .venv/bin/activate"
+
+# Install test dependencies only
 install-test:
 	pip install -r requirements-test.txt
 
